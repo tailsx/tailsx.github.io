@@ -4,6 +4,11 @@ monogreen: http://paletton.com/palette.php?uid=12N0u0kifdbbymqdNh5mCawrN6Z;
 adjacent: http://paletton.com/palette.php?uid=52N0u0kjfdpbPiWdzeenjbwsi8E;
 triad: http://paletton.com/palette.php?uid=32N0u0kjfdpbPiWdzeenjbwsi8E;
 */
+
+
+/*
+	Overall style
+*/
 html,
 body {
    margin:0;
@@ -33,23 +38,7 @@ body {
 }
 
 
-/* Profile image */
-.circular {
-	width: 300px;
-	height: 300px;
-	border-radius: 150px;
-	-webkit-border-radius: 150px;
-	-moz-border-radius: 150px;
-	background: url(img/david.jpg) no-repeat;
-	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-	}
-
-.circular img {
-	opacity: 0;
-	filter: alpha(opacity=0);
-	}
+/* ------------------------------------------------------------ */
 
 
 /* Custom formatting */
@@ -77,3 +66,45 @@ ul#menu li {
 .primary {
 	color: #D7E8B3;
 }
+/*
+	Header style
+*/
+
+
+
+/* ------------------------------------------------------------ */
+
+/*
+	Content style
+*/
+
+/* Profile image */
+.circular {
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(../img/david.jpg) no-repeat;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	margin-left: auto;
+	margin-right: auto;
+	display:block;
+	}
+
+.circular img {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	}
+
+/* ------------------------------------------------------------ */
+
+/*
+	Footer style
+*/
+
+
+
+/* ------------------------------------------------------------ */
