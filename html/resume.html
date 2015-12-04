@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
   <div id="navbar">
-    <img src="img/DC.png">
+    <img src="../img/DC.png">
     <ul id="menu">
       <li>Home</li>
       <li>Resume</li>
@@ -19,7 +20,7 @@
     <div id="body">
       <!-- INTRODUCTION -->
       <section>
-        <h1>David Chen</h1>
+        <h1 class="heading">David Chen</h1>
         <ul>
           <li>Looking for a developer position</li>
           <li>Experience in frontend and backend app development</li>
@@ -28,23 +29,23 @@
       </section>
 
       <!-- SKILLS -->
-      <section>
+      <section class="clearfix">
         <h2>Skillset</h2>
-        <ul>
+        <ul class="info">
           <li>HTML/CSS</li>
           <li>Java</li>
           <li>Javascript</li>
           <li>C/C++</li>
         </ul>
 
-        <ul>
+        <ul class="info">
           <li>Node.js</li>
           <li>Sails.js</li>
           <li>Twitter Bootstrap</li>
           <li>Express.js</li>
         </ul>
 
-        <ul>
+        <ul class="info">
           <li>Git</li>
           <li>Scrum development model</li>
           <li>Experience working with client</li>
@@ -75,8 +76,28 @@
             </ul>
           </div>
         </article></li>
-        <li>BioBlitz</li>
-        <li>Infosec</li>
+        <li><article>
+          <h3>BioBlitz App</h3>
+          An frontend web app that I made for the Royal Ontario Musuem's biodiversity department.  Initially, the idea was to create an app to help collect data whenever they do a Bioblitz event, which is a field study of a particular area.  Eventually, a prototype was settle for a frontend web app that adds information towards the iNaturalist database.  If I could have continued this project, the next step would have been making it on mobile devices. 
+          <div>
+            <ul>
+              <li>iNaturalist: <a>Link</a></li>
+              <li>BioBlitz: <a>Link</a></li>
+              <li>Github: <a>Link</a></li>
+              <li>Discussion</li>
+            </ul>
+          </div>
+        </article></li>
+        <li><article>
+          <h3>Infosec</h3>
+          A web app with a focus on teaching network security in a way similiar to codeacademy.  A full stack app, I worked on the front end mostly.  
+          <div>
+            <ul>
+              <li>Github: <a>Link</a></li>
+              <li>Discussion</li>
+            </ul>
+          </div>
+        </article></li>
       </ul>
       </section>
     </div>
@@ -86,8 +107,39 @@
 
 
     <!-- FOOTER AND CONTACTS -->
-    <div id="footer">
-    </div>
+    <div class="footer clearfix">
+      <div class="outer-wrapper">
+        <div class="inner-wrapper">
+          <div class="column">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="#">Resume</a></li>
+              <li><a href="hobbies.html">Hobbies</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <ul>
+              <li>Boardgame List</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <ul>
+              <li><a href="http://www.twitter.com/tailsx"><img src="../img/leegaragano_32x32/twitter.png">Twitter</a></li>
+              <li><a href="https://www.linkedin.com/in/tailsx"><img src="../img/leegaragano_32x32/linkedin.png">LinkedIn</a></li>
+              <li><a href="https://github.com/tailsx"><img src="../img/leegaragano_32x32/github.png">Github</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h2>Email</h2>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- footer -->
   </div><!-- wrapper -->
 </body>
 </html>
