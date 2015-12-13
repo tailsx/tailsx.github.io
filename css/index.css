@@ -45,7 +45,16 @@ body {
 	Header style
 */
 
+div#navbar {
+	position: relative;
+	background: #63925E;
+	height: 70px;
+}
+
 ul#menu {
+	position: absolute;
+	right: 20px;
+	bottom: 0px;
 	text-align: right;
 	margin: 0px;
 	padding-right: 20px;
@@ -55,12 +64,14 @@ ul#menu li {
     display:inline;
     padding-left: 10px;
     padding-right: 10px;
+    border: 1px solid black;
 }
 
-div#navbar {
-	background: #63925E;
-	height: 70px;
-}
+ul#menu li a { text-decoration: none; }
+ul#menu li a:hover{ color: red; }
+
+.temp{ color: red; }
+#logo{ height: 100%; float: left; }
 /* ------------------------------------------------------------ */
 
 /*
@@ -132,7 +143,7 @@ div#navbar {
 	display: inline;
 }
 
-.column{ float: left; margin: 0 1.5em; background: red;}
+.column{ float: left; margin: 0 0.5em; background: red;}
 .outer-wrapper { position: relative; float: right; right: 50%; }
 .inner-wrapper { position: relative; float: right; right: -50%; }
 
