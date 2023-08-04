@@ -1,12 +1,6 @@
 import Image from "next/image"
 
-export default function Experience({
-  title,
-  imgTitle,
-  img,
-  description,
-  children,
-}) {
+export default function Experience({ title, imgTitle, img, description, children }) {
   return (
     <article>
       <div>

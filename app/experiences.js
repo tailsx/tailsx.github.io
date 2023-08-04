@@ -1,8 +1,4 @@
-import Footer from "./components/footer"
-import Nav from "./components/nav"
-import Me from "./components/me"
-import David from "./components/david"
-import Experiences from "./experiences"
+import Experience from "./components/experience"
 
 const EXPERIENCES = [
   {
@@ -23,19 +19,12 @@ const EXPERIENCES = [
   },
 ]
 
-export default function Home() {
+export default function Experiences() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-4">
-      <Nav />
-
-      <David />
-
-      <div>
-        <Me />
-        <Experiences />
-      </div>
-
-      <Footer />
-    </main>
+    <section id="experiences">
+      {EXPERIENCES.map((experience) => (
+        <Experience key={experience.id} {...experience} />
+      ))}
+    </section>
   )
 }

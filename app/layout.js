@@ -1,4 +1,7 @@
 import "./globals.css"
+import { Roboto } from "next/font/google"
+
+const font = Roboto({ subsets: ["latin"], style: ["normal", "italic"], weight: ["400", "700"] })
 
 export const metadata = {
   title: "David Chen",
@@ -8,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${font.className} bg-[#00205B]`} >{children}</body>
     </html>
   )
 }
