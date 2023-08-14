@@ -1,9 +1,9 @@
-export default function Nav() {
-  //Create a nav component that has an active style when the anchor link of #about or #experiences are scrolled into view
+import { HiMenu } from "react-icons/hi"
 
+export default function Nav() {
   return (
-    <nav>
-      <ul>
+    <nav className="sticky bg-red top-0 z-30">
+      <ul className="flex gap-4">
         <li>About</li>
         <li>Experiences</li>
       </ul>
