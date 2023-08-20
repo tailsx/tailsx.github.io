@@ -3,39 +3,44 @@ import clsx from "clsx"
 import { createContext, useCallback, useContext, useState } from "react"
 
 export default function GoldCaluclator() {
-  /*   const toggleStage = useCallback((stageIndex) => {
-    if (stageIndex === 3) return
-    setCombats((old) => {
-      const f = [...old]
-      f[stageIndex] = Boolean(!f[stageIndex])
-      return f
-    })
-  }, []) */
-  const handleClick = () => {
-    console.log(convertRoundsToStreaks(combats))
-  }
+  return (
+    <CalculatorProvider>
+      <Stage2Calculator />
+    </CalculatorProvider>
+  )
+}
+
+function Stage2Calculator() {
+  const { toggleRound, rounds, forcePreset } = useContext(CalculatorContext)
+  const handleRoundClick = useCallback(
+    (index) => {
+      toggleRound(index)
+    },
+    [toggleRound]
+  )
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
     const data = new FormData(form)
-    console.log(calculateIncomeNextRound(data.get("gold"), 2))
+    //console.log(calculateIncomeNextRound(data.get("gold"), 2))
+    console.log(...calculateGold(parseInt(data.get("gold")), rounds))
   }
 
   return (
-    <CalculatorProvider>
-      <div className="px-2 py-4">
-        <h1 className="text-3xl text-center">Stage 2 Planner</h1>
-        <div>
-          <button onClick={handleClick}>Click</button>
-          <form onSubmit={handleSubmit}>
-            <RoundHud />
-            <input name="gold" type="number" defaultValue={0} max={999} min={0} />
-            <button type="submit">Calculate</button>
-          </form>
-        </div>
+    <div className="px-2 py-4">
+      <h1 className="text-3xl text-center">Stage 2 Planner</h1>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <button type="button" onClick={() => forcePreset("winstreak")}>
+            winstreak
+          </button>
+          <RoundHud rounds={rounds} onRoundClick={handleRoundClick} />
+          <input name="gold" type="number" defaultValue={0} max={999} min={0} />
+          <button type="submit">Calculate</button>
+        </form>
       </div>
-    </CalculatorProvider>
+    </div>
   )
 }
 
@@ -73,30 +78,20 @@ const CalculatorProvider = ({ children }) => {
 }
 
 function RoundHud(props) {
-  const { toggleRound, rounds, forcePreset } = useContext(CalculatorContext)
-  const handleClick = useCallback(
-    (index) => {
-      toggleRound(index)
-    },
-    [toggleRound]
-  )
+  const handleClick = (index) => {
+    if (props?.onRoundClick) return props.onRoundClick(index)
+  }
   return (
     <div>
-      <div>
-        Quick Presets:{" "}
-        <div>
-          <button onClick={() => forcePreset("winstreak")}>winstreak</button>
-        </div>
-      </div>
       <div className="flex justify-between">
-        {rounds.map((round, index) => {
+        {props.rounds.map((round, index) => {
           const stage = index + 1
           return (
             <button
               type="button"
               className={clsx(
                 "p-2 border border-white rounded",
-                rounds[index] === null ? "text-gray-400" : rounds[index] ? "text-blue-600" : "text-red-600"
+                props.rounds[index] === null ? "text-gray-400" : props.rounds[index] ? "text-blue-600" : "text-red-600"
               )}
               onClick={() => handleClick(index)}
               key={index}
@@ -110,23 +105,33 @@ function RoundHud(props) {
   )
 }
 
-function calculateIncomeNextRound(currentGold, currentStreak) {
+function calculateGold(startGold, rounds) {
   const GOLD_BASE_PER_ROUND = 5
   const GOLD_STREAKS = [0, 0, 1, 1, 2, 3]
-  const interest = Math.floor(currentGold / 10)
-  const streak = GOLD_STREAKS[currentStreak]
-  return {
-    total: GOLD_BASE_PER_ROUND + interest + streak,
-    breakdown: {
-      base: GOLD_BASE_PER_ROUND,
-      interest,
-      streak,
-    },
-  }
-}
 
-function calculateGold(rounds, curentGold = 0) {
-  return calculateIncomeNextRound(20, 1)
+  const summary = []
+  for (let i = 0; i < rounds.length; i++) {
+    const interest = Math.floor(startGold / 10)
+    if (i === 0) {
+      summary.push({
+        goldStart: startGold,
+        income: GOLD_BASE_PER_ROUND + interest,
+        goldEnd: startGold + GOLD_BASE_PER_ROUND + interest,
+        rounds,
+      })
+      continue
+    }
+
+    const streak = GOLD_STREAKS[convertRoundsToStreaks(rounds.slice(0, i)).slice(-1)[0]]
+    summary.push({
+      goldStart: summary[i - 1].goldEnd,
+      income: GOLD_BASE_PER_ROUND + interest + streak,
+      goldEnd: summary[i - 1].goldEnd + GOLD_BASE_PER_ROUND + interest + streak,
+      rounds,
+    })
+  }
+
+  return summary
 }
 
 function convertRoundsToStreaks(rounds) {
