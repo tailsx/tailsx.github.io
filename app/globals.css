@@ -4,14 +4,20 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
+  --input-rgb: 255, 0, 0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
+    --input-rgb: 210, 210, 210;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
+}
+
+body input {
+  background-color: rgb(var(--input-rgb));
 }
