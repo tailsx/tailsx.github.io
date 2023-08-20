@@ -2,6 +2,8 @@
 import clsx from "clsx"
 import { createContext, useCallback, useContext, useState } from "react"
 
+window.convertRoundsToStreaks = convertRoundsToStreaks
+
 export default function GoldCaluclator() {
   return (
     <CalculatorProvider>
@@ -144,14 +146,16 @@ function calculateGold(startGold, rounds) {
 }
 
 function convertRoundsToStreaks(rounds) {
+  if (rounds.length === 0) return []
+  if (rounds.length === 1) return [1]
   const streaks = []
 
   let current = 0
 
   // fix streak so round 4 doesn't count
-  for (let i = 0; i <= rounds.length; i++) {
+  for (let i = 0; i < rounds.length; i++) {
     const round = rounds[i]
-    if (i === 3) continue
+    if (round === null) continue
     if (current === 0) {
       current = round ? 1 : -1
       continue
@@ -166,6 +170,9 @@ function convertRoundsToStreaks(rounds) {
       current = round ? 1 : -1
     }
   }
+
+  // push whatever streak at end
+  streaks.push(Math.abs(current))
 
   return streaks
 }
