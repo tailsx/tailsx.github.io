@@ -122,12 +122,21 @@ function calculateGold(startGold, rounds) {
       continue
     }
 
+    if (i === 3) {
+      summary.push({ ...summary[i - 1], i })
+      continue
+    }
+
     const streak = GOLD_STREAKS[convertRoundsToStreaks(rounds.slice(0, i)).slice(-1)[0]]
     summary.push({
+      i,
       goldStart: summary[i - 1].goldEnd,
       income: GOLD_BASE_PER_ROUND + interest + streak,
       goldEnd: summary[i - 1].goldEnd + GOLD_BASE_PER_ROUND + interest + streak,
       rounds,
+      do: rounds.slice(0, i),
+      check: convertRoundsToStreaks(rounds.slice(0, i)),
+      check2: convertRoundsToStreaks(rounds.slice(0, i)).slice(-1),
     })
   }
 
