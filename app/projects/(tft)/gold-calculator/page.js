@@ -73,8 +73,9 @@ const CalculatorProvider = ({ children }) => {
     // don't allow creep rounds
     if (stageIndex === 3 || stageIndex === 6) return
     setResults((old) => {
-      if (stageIndex === old.length) return [Boolean(...old.slice(0, stageIndex), !old[stageIndex])]
-      return [...old.slice(0, stageIndex), Boolean(!old[stageIndex]), ...old.slice(stageIndex + 1)]
+      const newResults = [...old]
+      newResults[stageIndex] = newResults[stageIndex] > 0 ? -1 : 1
+      return newResults
     })
   }, [])
 
@@ -127,7 +128,7 @@ const CalculatorProvider = ({ children }) => {
         }
 
         if (round.type === "combat") {
-          const income = 5 + Math.floor(runningGold / 10)
+          let income = 5 + Math.floor(runningGold / 10)
           if (streaks === 0) {
             output.push({
               round,
@@ -143,11 +144,14 @@ const CalculatorProvider = ({ children }) => {
 
           // continue streak
           if (Math.sign(streaks) === result) {
+            income += result > 0 ? 1 : 0
+            income += GOLD_STREAKS[Math.abs(streaks)]
+
             output.push({
               round,
               gold: {
                 start: runningGold,
-                end: runningGold + income + GOLD_STREAKS[Math.abs(streaks)],
+                end: runningGold + income,
               },
             })
             streaks += Math.sign(streaks)
@@ -162,7 +166,7 @@ const CalculatorProvider = ({ children }) => {
                 end: runningGold + income,
               },
             })
-
+            runningGold += income
             streaks += result
           }
         }
@@ -193,7 +197,11 @@ function RoundHud(props) {
               type="button"
               className={clsx(
                 "p-2 border border-white rounded",
-                props.rounds[index] === null ? "text-gray-400" : props.rounds[index] ? "text-blue-600" : "text-red-600"
+                props.rounds[index] === null
+                  ? "text-gray-400"
+                  : props.rounds[index] === 1
+                  ? "text-blue-600"
+                  : "text-red-600"
               )}
               onClick={() => handleClick(index)}
               key={index}
