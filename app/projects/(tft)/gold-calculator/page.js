@@ -2,8 +2,6 @@
 import clsx from "clsx"
 import { createContext, useCallback, useContext, useState } from "react"
 
-window.convertRoundsToStreaks = convertRoundsToStreaks
-
 export default function GoldCaluclator() {
   return (
     <CalculatorProvider>
@@ -13,7 +11,7 @@ export default function GoldCaluclator() {
 }
 
 function Stage2Calculator() {
-  const { toggleRound, rounds, forcePreset } = useContext(CalculatorContext)
+  const { toggleRound, rounds, forcePreset, results, setResults } = useContext(CalculatorContext)
   const handleRoundClick = useCallback(
     (index) => {
       toggleRound(index)
@@ -25,8 +23,9 @@ function Stage2Calculator() {
     e.preventDefault()
     const form = e.target
     const data = new FormData(form)
-    //console.log(calculateIncomeNextRound(data.get("gold"), 2))
-    console.log(...calculateGold(parseInt(data.get("gold")), rounds))
+
+    const goldPerRound = calculateGold(parseInt(data.get("gold")), rounds)
+    setResults(goldPerRound)
   }
 
   return (
@@ -39,8 +38,14 @@ function Stage2Calculator() {
           </button>
           <RoundHud rounds={rounds} onRoundClick={handleRoundClick} />
           <input name="gold" type="number" defaultValue={0} max={999} min={0} />
+          <input name="carousel" type="number" defaultValue={1} max={3} min={1} />
           <button type="submit">Calculate</button>
         </form>
+      </div>
+      <div>
+        {results.map((r, key) => {
+          return <div key={key}>{`Gold: ${r.goldEnd}`}</div>
+        })}
       </div>
     </div>
   )
@@ -49,6 +54,7 @@ function Stage2Calculator() {
 const CalculatorContext = createContext(null)
 const CalculatorProvider = ({ children }) => {
   const [rounds, setRounds] = useState([null, null, null, null, null, null, null])
+  const [results, setResults] = useState([])
 
   const toggleRound = useCallback((stageIndex) => {
     // don't allow creep rounds
@@ -75,7 +81,9 @@ const CalculatorProvider = ({ children }) => {
   }, [])
 
   return (
-    <CalculatorContext.Provider value={{ toggleRound, rounds, forcePreset }}>{children}</CalculatorContext.Provider>
+    <CalculatorContext.Provider value={{ toggleRound, rounds, forcePreset, results, setResults }}>
+      {children}
+    </CalculatorContext.Provider>
   )
 }
 
