@@ -1,6 +1,7 @@
 "use client"
 import clsx from "clsx"
 import { createContext, useCallback, useContext, useState } from "react"
+import Gold from "./GoldCard"
 
 export default function GoldCaluclator() {
   return (
@@ -40,17 +41,38 @@ function Stage2Calculator() {
             winstreak
           </button>
           <RoundHud rounds={results} onRoundClick={handleRoundClick} />
-          <input name="gold" type="number" defaultValue={0} max={999} min={0} />
-          <input name="carousel" type="number" defaultValue={1} max={3} min={1} />
-          <button type="submit">Calculate</button>
+          <div className="flex flex-col">
+            <div>
+              <label className="w-12" htmlFor="gold">
+                Gold
+              </label>
+              <input
+                className="border rounded-lg w-12 px-2 py-1"
+                name="gold"
+                type="number"
+                defaultValue={0}
+                max={999}
+                min={0}
+              />
+            </div>
+            <div>
+              <label htmlFor="carousel">carousel</label>
+              <input
+                className="border rounded-lg w-12 px-2 py-1"
+                name="carousel"
+                type="number"
+                defaultValue={3}
+                max={3}
+                min={1}
+              />
+            </div>
+          </div>
+          <button className="w-full border rounded-lg px-4 py-2 bg-primary-default" type="submit">
+            Calculate
+          </button>
         </form>
       </div>
-      <div>
-        {calculation &&
-          calculation.map((r, key) => {
-            return <div key={r.round.round}>{`Gold: ${r.gold.end}`}</div>
-          })}
-      </div>
+      <RoundCalculate data={calculation} />
     </div>
   )
 }
@@ -180,6 +202,17 @@ const CalculatorProvider = ({ children }) => {
     <CalculatorContext.Provider value={{ toggleRound, results, setResults, forcePreset, computeRounds, calculation }}>
       {children}
     </CalculatorContext.Provider>
+  )
+}
+
+function RoundCalculate(props) {
+  return (
+    <div>
+      {props.data &&
+        props.data.map((r, key) => {
+          return <Gold key={key} value={r.gold.end} />
+        })}
+    </div>
   )
 }
 
