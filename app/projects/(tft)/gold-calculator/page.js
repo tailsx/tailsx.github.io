@@ -1,7 +1,9 @@
 "use client"
 import clsx from "clsx"
-import { createContext, useCallback, useContext, useState } from "react"
+import { createContext, useCallback, useContext, useState, useMemo } from "react"
 import Gold from "./GoldCard"
+import RoundHud from "./RoundHud"
+import { CalculatorContext, CalculatorProvider } from "./GoldContext"
 
 export default function GoldCaluclator() {
   return (
@@ -12,7 +14,11 @@ export default function GoldCaluclator() {
 }
 
 function Stage2Calculator() {
-  const { toggleRound, results, setResults, forcePreset, computeRounds, calculation } = useContext(CalculatorContext)
+  const { toggleRound, results, rounds, setResults, forcePreset, computeRounds, calculation } =
+    useContext(CalculatorContext)
+  const [userConfig, setUserConfig] = useState({})
+  const [summary, setSummary] = useState(null)
+
   const handleRoundClick = useCallback(
     (index) => {
       toggleRound(index)
@@ -25,183 +31,114 @@ function Stage2Calculator() {
     const form = e.target
     const data = new FormData(form)
 
-    if (results.filter((r, index) => index !== 3 && index !== 6 && r === null).length > 0) {
-      alert("Please fill out all rounds")
-    } else {
-      computeRounds(parseInt(data.get("gold")))
-    }
+    console.log(computeRounds(parseInt(data.get("gold")), userConfig.rounds))
+  }
+
+  const handleButtonClick = (config) => {
+    setUserConfig(config)
+    setSummary(computeRounds(parseInt(config.startingGold), config.rounds))
   }
 
   return (
-    <div className="px-2 py-4">
-      <h1 className="text-3xl text-center">Stage 2 Planner</h1>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <button type="button" onClick={() => forcePreset("winstreak")}>
-            winstreak
-          </button>
-          <RoundHud rounds={results} onRoundClick={handleRoundClick} />
-          <div className="flex flex-col">
-            <div>
-              <label className="w-12" htmlFor="gold">
-                Gold
-              </label>
-              <input
-                className="border rounded-lg w-12 px-2 py-1"
-                name="gold"
-                type="number"
-                defaultValue={0}
-                max={999}
-                min={0}
-              />
-            </div>
-            <div>
-              <label htmlFor="carousel">carousel</label>
-              <input
-                className="border rounded-lg w-12 px-2 py-1"
-                name="carousel"
-                type="number"
-                defaultValue={3}
-                max={3}
-                min={1}
-              />
-            </div>
-          </div>
-          <button className="w-full border rounded-lg px-4 py-2 bg-primary-default" type="submit">
-            Calculate
-          </button>
-        </form>
-      </div>
-      <RoundCalculate data={calculation} />
+    <div className="px-2 py-4 theme-tft bg-neutral min-h-screen min-w-screen">
+      <h1 className="text-3xl text-center text-neutral-contrast">Stage 2 Planner</h1>
+      <StartingConfig rounds={rounds} onButtonClick={handleButtonClick} />
+      <Summary startGold={5} startRound={1} summary={summary} />
     </div>
   )
 }
 
-const CalculatorContext = createContext(null)
-const CalculatorProvider = ({ children }) => {
-  const [rounds, setRounds] = useState([
-    { round: 1, type: "combat" },
-    { round: 2, type: "combat" },
-    { round: 3, type: "combat" },
-    { round: 4, type: "carousel" },
-    { round: 5, type: "combat" },
-    { round: 6, type: "combat" },
-    { round: 7, type: "creep" },
-  ])
-  const [results, setResults] = useState([null, null, null, null, null, null, null])
-  const [calculation, setCalculation] = useState(null)
+function StartingConfig(props) {
+  const [rounds, setRounds] = useState(props.rounds.map(() => null))
 
-  const toggleRound = useCallback((stageIndex) => {
-    // don't allow creep rounds
-    if (stageIndex === 3 || stageIndex === 6) return
-    setResults((old) => {
-      const newResults = [...old]
-      newResults[stageIndex] = newResults[stageIndex] > 0 ? -1 : 1
-      return newResults
+  const handleConfigSubmit = (e) => {
+    e.preventDefault()
+    if (props.onButtonClick) {
+      props.onButtonClick({
+        startingRound: e.target.startingRound.value,
+        startingGold: e.target.startingGold.value,
+        rounds,
+      })
+    }
+  }
+  const handleRoundClick = useCallback((index) => {
+    if (index === 3 || index === 6) return
+    setRounds((prev) => {
+      const newRounds = [...prev]
+      newRounds[index] = newRounds[index] === 1 ? -1 : 1
+      return newRounds
     })
   }, [])
 
-  const forcePreset = useCallback((key) => {
-    switch (key) {
-      case "winstreak":
-        setResults([1, 1, 1, null, 1, 1, null])
-        return
-      case "losestreak":
-        setResults([-1, -1, -1, null, -1, -1, null])
-        return
-      case "reset":
-      default:
-        setResults([null, null, null, null, null, null, null])
-        return
-    }
-  }, [])
+  return (
+    <div>
+      <form onSubmit={handleConfigSubmit} className="flex flex-col gap-4">
+        <Input label="Current Round" size="sm" name="startingRound" />
+        <Input label="Current Gold" name="startingGold" />
 
-  const computeRounds = useCallback(
-    (startingGold) => {
-      const GOLD_STREAKS = [0, 0, 1, 1, 2, 3]
-      const GOLD_CAROUSEL = 3
-      //For every round, calculate the gold per round
-      const output = []
-      let runningGold = startingGold
-      let streaks = 0
-
-      for (let i = 0; i < rounds.length; i++) {
-        const round = rounds[i]
-        const result = results[i]
-        if (round.type === "carousel") {
-          output.push({
-            round,
-            gold: {
-              start: runningGold,
-              end: runningGold + GOLD_CAROUSEL,
-            },
-          })
-          runningGold += GOLD_CAROUSEL
-        }
-
-        if (round.type === "creep") {
-          output.push({
-            round,
-            gold: {
-              start: runningGold,
-              end: runningGold,
-            },
-          })
-        }
-
-        if (round.type === "combat") {
-          let income = 5 + Math.floor(runningGold / 10)
-          if (streaks === 0) {
-            output.push({
-              round,
-              gold: {
-                start: runningGold,
-                end: runningGold + income,
-              },
-            })
-            runningGold += income
-            streaks = result
-            continue
-          }
-
-          // continue streak
-          if (Math.sign(streaks) === result) {
-            income += result > 0 ? 1 : 0
-            income += GOLD_STREAKS[Math.abs(streaks)]
-
-            output.push({
-              round,
-              gold: {
-                start: runningGold,
-                end: runningGold + income,
-              },
-            })
-            streaks += Math.sign(streaks)
-            runningGold += income
-          }
-          // streak broken
-          else {
-            output.push({
-              round,
-              gold: {
-                start: runningGold,
-                end: runningGold + income,
-              },
-            })
-            runningGold += income
-            streaks += result
-          }
-        }
-      }
-      setCalculation(output)
-    },
-    [rounds, results]
+        <RoundHud list={rounds} onButtonClick={handleRoundClick} />
+        <button className="bg-primary shadow-xl px-4 py-4 rounded">
+          <span className="text-xl">Start Planning</span>
+        </button>
+      </form>
+    </div>
   )
+}
+
+function Input(props) {
+  const { type, name, value, onChange, label, size = "auto" } = props
 
   return (
-    <CalculatorContext.Provider value={{ toggleRound, results, setResults, forcePreset, computeRounds, calculation }}>
-      {children}
-    </CalculatorContext.Provider>
+    <label className="flex">
+      <span className="w-40 flex-shrink-0">{label}</span>
+      <input
+        className={clsx(
+          "bg-white text-black/70",
+          size === "auto" ? "flex-grow" : size === "xs" ? "w-8" : size === "sm" ? "w-12" : ""
+        )}
+        name={name}
+        type={type || "text"}
+      />
+    </label>
+  )
+}
+
+function Button(props) {
+  return <button className="bg-primary">{props.children}</button>
+}
+
+function Summary(props) {
+  const { startGold, startRound, summary } = props
+
+  const header = useMemo(() => {
+    return summary
+      ? summary.map((r) => {
+          return <th key={`head-${r.round.round}`}>{r.round.round}</th>
+        })
+      : null
+  }, [summary])
+
+  const body = useMemo(() => {
+    return summary
+      ? summary.map((r) => {
+          return <td key={`body-${r.round.round}`}>{r.gold.end}</td>
+        })
+      : null
+  }, [summary])
+
+  return (
+    <div>
+      {`Starting at round 2-${startRound} with ${startGold}, we the gold is as follows`}
+
+      <table className="border-collapse table-auto w-full text-center border">
+        <thead className="font-extrabold">
+          <tr>{header}</tr>
+        </thead>
+        <tbody className="text-white">
+          <tr>{body}</tr>
+        </tbody>
+      </table>
+    </div>
   )
 }
 
@@ -212,38 +149,6 @@ function RoundCalculate(props) {
         props.data.map((r, key) => {
           return <Gold key={key} value={r.gold.end} />
         })}
-    </div>
-  )
-}
-
-function RoundHud(props) {
-  const handleClick = (index) => {
-    if (props?.onRoundClick) return props.onRoundClick(index)
-  }
-  return (
-    <div>
-      <div className="flex justify-between">
-        {props.rounds.map((round, index) => {
-          const stage = index + 1
-          return (
-            <button
-              type="button"
-              className={clsx(
-                "p-2 border border-white rounded",
-                props.rounds[index] === null
-                  ? "text-gray-400"
-                  : props.rounds[index] === 1
-                  ? "text-blue-600"
-                  : "text-red-600"
-              )}
-              onClick={() => handleClick(index)}
-              key={index}
-            >
-              {`2-${stage}`}
-            </button>
-          )
-        })}
-      </div>
     </div>
   )
 }

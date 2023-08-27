@@ -3,15 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --input-rgb: 255, 0, 0;
-  --primary-bg: #f2f2f2;
+  --neutral: #ffffff;
+  --neutral-accent: #3d4451;
+  --neutral-contrast: #000000;
+  --primary: #570df8;
+  --secondary: #f000b8;
+  --tertiary: #37cdbe;
+}
+
+:root .theme-tft {
+  --neutral: #ffb60c;
+  --neutral-accent: #fff;
+  --neutral-contrast: #0C55FF;
+  --primary: #0A323C;
+  --secondary: #f000b8;
+  --tertiary: #37cdbe;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --input-rgb: 210, 210, 210;
+    --neutral: #2a303c;
+    --neutral-accent: #191d24;
+    --neutral-contrast: #a4abb8;
+    --primary: #6419e6;
+    --secondary: #d126a4;
+    --tertiary: #1fb2a6;
   }
 }
 
