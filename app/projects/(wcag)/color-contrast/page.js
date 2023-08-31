@@ -1,16 +1,18 @@
 "use client"
 
 import { useCallback, useState } from "react"
+import { adjustForegroundColorForContrast } from "./colorUtil"
 
 export default function ColorContrast() {
-  const [colorForeground, setColorForeground] = useState("#ff0000")
-  const [colorBackground, setColorBackground] = useState("#456789")
+  const [colorForeground, setColorForeground] = useState("#ffffff")
+  const [colorBackground, setColorBackground] = useState("#000000")
 
   const [ratio, setRatio] = useState(21)
 
   const handleClick = useCallback(() => {
     setRatio(calcContrastRatio(colorForeground, colorBackground))
-    console.log(suggestColorAsHex(colorForeground, colorBackground, 4.5))
+    //console.log(suggestColorAsHex(colorForeground, colorBackground, 4.5))
+    console.log(adjustForegroundColorForContrast(colorForeground, colorBackground, 4.5))
   }, [colorForeground, colorBackground])
 
   return (
@@ -97,84 +99,4 @@ function hexToRgb(hex) {
   const b = parseInt(hex.substring(5, 7), 16)
 
   return [r, g, b]
-}
-
-function suggestColorAsHex(startColor, bgColor, targetRatio) {
-  const bgLuminance = calcRelativeLuminance(bgColor)
-
-  let targetLuminance = (Math.max(bgLuminance, targetRatio * bgLuminance) + 0.05) / targetRatio - 0.05
-  if (targetLuminance < 0) {
-    targetLuminance = targetRatio * (Math.min(bgLuminance, targetRatio * bgLuminance) + 0.05) - 0.05
-  }
-
-  let startRgb = hexToRgb(startColor)
-
-  let suggestions = []
-
-  // Loop over each RGB component (R, G, B)
-  for (let i = 0; i < 3; i++) {
-    const component = calcComponentForLuminance(targetLuminance, startColor, ["R", "G", "B"][i])
-    if (component > 0 && component <= 255) {
-      const tempRgb = [...startRgb]
-      tempRgb[i] = component
-      suggestions.push(rgbToHex(tempRgb))
-    }
-  }
-
-  return suggestions
-}
-
-function calcComponentForLuminance(luminance, baseColor, component) {
-  // Convert the base hex color to its RGB components
-  const baseRgb = hexToRgb(baseColor)
-
-  // Calculate the luminance contributed by the components other than the one we want to solve for
-  const remainingLuminance =
-    luminance -
-    (0.2126 * baseRgb[0] * (component !== "R" ? 1 : 0) +
-      0.7152 * baseRgb[1] * (component !== "G" ? 1 : 0) +
-      0.0722 * baseRgb[2] * (component !== "B" ? 1 : 0))
-
-  let coefficient
-
-  // Get the coefficient for the RGB component we want to solve for
-  switch (component) {
-    case "R":
-      coefficient = 0.2126
-      break
-    case "G":
-      coefficient = 0.7152
-      break
-    case "B":
-      coefficient = 0.0722
-      break
-    default:
-      return null
-  }
-
-  // Find the component's normalized value that would yield the remaining luminance
-  const normalizedComponent = remainingLuminance / coefficient
-
-  // Inverse the gamma correction/normalization to get the original RGB value
-  let hue
-  if (normalizedComponent <= 0.03928) {
-    hue = normalizedComponent * 12.92
-  } else {
-    hue = 1.055 * Math.pow(normalizedComponent, 1 / 2.4) - 0.055
-  }
-
-  // Convert normalized hue to 0-255 range
-  hue = Math.round(hue * 255)
-
-  // If hue is out of the 0-255 range, it's not a valid RGB value, so return null
-  if (hue < 0 || hue > 255) {
-    return null
-  }
-
-  // The hue that will give us the target luminance
-  return hue
-}
-
-function rgbToHex(rgb) {
-  return "#" + rgb.map((x) => x.toString(16).padStart(2, "0")).join("")
 }

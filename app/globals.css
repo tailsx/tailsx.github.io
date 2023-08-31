@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --neutral: #ffffff;
-  --neutral-accent: #3d4451;
-  --neutral-contrast: #000000;
-  --primary: #570df8;
-  --secondary: #f000b8;
+  --neutral: #c0c0c0;
+  --neutral-accent: #007bbb;
+  --neutral-contrast: #ffffff;
+  --primary: #00205b;
+  --secondary: #004c97;
   --tertiary: #37cdbe;
 }
 
 :root .theme-tft {
   --neutral: #ffb60c;
   --neutral-accent: #fff;
-  --neutral-contrast: #0C55FF;
-  --primary: #0A323C;
+  --neutral-contrast: #0c55ff;
+  --primary: #0a323c;
   --secondary: #f000b8;
   --tertiary: #37cdbe;
 }
