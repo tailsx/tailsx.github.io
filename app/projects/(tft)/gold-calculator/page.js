@@ -40,8 +40,8 @@ function Stage2Calculator() {
   }
 
   return (
-    <div className="px-2 py-4 theme-tft bg-neutral min-h-screen min-w-screen">
-      <h1 className="text-3xl text-center text-neutral-contrast">Stage 2 Planner</h1>
+    <div className="px-2 py-4 theme-tft bg-primary min-h-screen min-w-screen">
+      <h1 className="text-3xl text-center text-secondary">Stage 2 Planner</h1>
       <StartingConfig rounds={rounds} onButtonClick={handleButtonClick} />
       <Summary startGold={5} startRound={1} summary={summary} />
     </div>

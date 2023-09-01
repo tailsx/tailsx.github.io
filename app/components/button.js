@@ -1,7 +1,7 @@
 export default function Button(props) {
   const { variant, size, fullWidth, onClick, children } = props
 
-  let style = "px-4 py-2 rounded-lg text-neutral-contrast"
+  let style = "px-4 py-2 rounded-lg text-netural"
 
   if (fullWidth) {
     style += " w-full"
@@ -14,6 +14,9 @@ export default function Button(props) {
 
     if (variant === "secondary") {
       style += " bg-secondary"
+    }
+    if (variant === "accent") {
+      style += " bg-accent"
     }
   }
 

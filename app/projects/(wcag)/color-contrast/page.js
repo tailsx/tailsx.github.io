@@ -16,7 +16,7 @@ export default function ColorContrast() {
   }, [colorForeground, colorBackground])
 
   return (
-    <div className="bg-neutral">
+    <div className="bg-primary">
       <h1>Color Contrast</h1>
       <section>
         <div className="flex justify-around">

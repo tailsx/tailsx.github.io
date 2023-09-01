@@ -6,53 +6,46 @@ import Experiences from "./experiences"
 import DavidSubscription from "./components/davidSubscription"
 import Headshot from "./components/headshot"
 import Image from "next/image"
+import DavidCards from "./components/davidCards"
 
 export default function Home() {
   return (
-    <main className="min-h-screen ">
+    <main className="min-h-screen">
       <Nav />
       <div className="relative flex flex-col">
         <section className="bg-white/30">
           <Hero />
         </section>
-        <section className="bg-green-400 px-2 py-4 flex flex-col items-center">
-          <Headshot />
-          <div className="flex flex-col md:flex-row">
-            <span>Toolkit</span>
-            <div className="flex gap-2">
-              <span>React</span>
-              <span>Next.js</span>
-              <span>Tailwind</span>
+        <section className="bg-primary px-2 py-4">
+          <div className="flex flex-col md:flex-row justify-between items-centers max-w-2xl mx-auto">
+            <Headshot />
+            <div className="text-secondary flex flex-col md:flex-row">
+              <span>Features</span>
+              <div className="flex gap-2">
+                <span>3+ years professional of ...</span>
+                <div>
+                  <span>React</span>
+                  <span>Next.js</span>
+                  <span>Tailwind</span>
+                </div>
+              </div>
+              <div>
+                <span>Independent experience in </span>
+                <div>Discord bots, AWS, Electron, Jenkins, Figma</div>
+                <span>try some now</span>
+              </div>
             </div>
-            <span>tech skills here</span>
           </div>
         </section>
-        <section>
-          <span>personality/soft skills here`</span>
-          <span>React enjoyer</span>
-          <div>
-            <span>Versitile</span>
-            <p>Recently doing frontend but can do full stack development as well</p>
-          </div>
-          <div>
-            <span>Competitive</span>
-            <p>{`Don't like losing and want to be the best. Be it for a team or individually. Love to competite and try and achieve the best`}</p>
-          </div>
-          <div>
-            <span>Number Guy</span>
-            <p>Performance metrics, rankings. Love to make sense of them and find meaning </p>
-          </div>
-          <span>Confident</span>
-        </section>
-        <section>
-          <span>landing page expert</span>
+        <section className="bg-primary theme-inverse">
+          <DavidCards />
         </section>
 
-        <Me />
+        {/*       <Me /> */}
         {/*        <section>
           <Experiences />
         </section> */}
-        <section>
+        <section className="bg-primary">
           <DavidSubscription />
         </section>
 

@@ -17,7 +17,7 @@ module.exports = {
         "neutral-accent": "var(--neutral-accent)",
         primary: "var(--primary)",
         secondary: "var(--secondary)",
-        tertiary: "var(--tertiary)",
+        accent: "var(--tertiary)",
       },
     },
   },
