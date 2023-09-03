@@ -1,34 +1,36 @@
 const CARDS = [
   {
-    title: "Versitile",
-    description: "Recently doing frontend but can do full stack development as well",
-  },
-  {
     title: "Sociable",
-    description:
-      "Sociable without using posting socials. Bowling, golfing, go-karting, having coffee? Message me and lets go",
+    description: "Values in-person interactions for enhanced teamwork and project cohesion."
   },
   {
     title: "Competitive",
-    description:
-      "Don't like losing and want to be the best. Be it for a team or individually. Love to competite and try and achieve the best",
+    description: "Exhibits a tenacious drive to excel, equally applicable in games and professional milestones."
   },
   {
     title: "Genuine",
-    description:
-      "The letters a and i in the name, but nothing articial. A person that care for the work and the people who work behind it",
+    description: "AI in the name but 100% human — providing uniquely tailored solutions."
   },
   {
-    title: "Growth",
-    description: "Always learning. Not afraid to failed and learn from it",
+    title: "Flexible",
+    description: "Adapts to varying tech landscapes with ease, amplifying efficiency and innovation in every project."
   },
-]
+  {
+    title: "Reliable",
+    description: "Delivers consistent quality and timeliness as core features, not optional add-ons."
+  },
+  {
+    title: "Resilient",
+    description: "Unfazed by setbacks, rebounds quickly to keep projects on track."
+  },
+];
+
 
 export default function DavidCards() {
   return (
     <div>
-      <div className="flex flex-col justify-between items-centers max-w-2xl mx-auto py-8">
-        <h3 className="text-3xl font-bold text-center ">What you get?</h3>
+      <div className="flex flex-col justify-between items-centers max-w-6xl mx-auto py-8 px-4">
+        <h3 className="text-3xl font-bold text-center mb-4">Countless Benefits</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {CARDS.map((card, i) => (
