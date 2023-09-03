@@ -23,7 +23,16 @@ export default function DavidFeatures() {
               ))}
             </div>
           </div>
-          <p>Shifted focus to frontend in 2017. Experience in backend as well as well</p>
+          <div>
+            <p>Harnessing 4+ Years of Experience in Practical Applications:</p>
+            <ul className="list-outside list-disc ml-4">
+              <li>Newsletters</li>
+              <li>SEO Optimatization</li>
+              <li>Discord Bot Dev</li>
+              <li>Gaming TFT Dev</li>
+              <li>... and more</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
