@@ -1,0 +1,5 @@
+# Block for projects
+User-agent: *
+Disallow: /project/
+Disallow: /projects/
+

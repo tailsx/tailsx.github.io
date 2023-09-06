@@ -1,23 +1,52 @@
-import Profile from "./components/headshot"
-import Experience from "./components/experience"
+import Footer from "./components/footer"
+import Nav from "./components/nav"
+import Me from "./components/me"
+import David from "./components/david"
+import Experiences from "./experiences"
+import DavidSubscription from "./components/davidSubscription"
+import Headshot from "./components/headshot"
+import Image from "next/image"
+import DavidCards from "./components/davidCards"
+import DavidFeatures from "./components/davidFeatures"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <div className="relative flex flex-col place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Profile />
-        <h1 className="text-4xl">David Chen</h1>
-        <span>Frontend Engineer</span>
+    <main className="min-h-screen">
+      <div className="relative flex flex-col">
+        <section className="bg-white/30">
+          <Hero />
+        </section>
+        <section className="bg-primary px-2 py-4">
+          <DavidFeatures />
+        </section>
+        <section className="bg-primary theme-inverse">
+          <DavidCards />
+        </section>
+
+        <section className="bg-primary">
+          <DavidSubscription />
+        </section>
+
+        <Footer />
       </div>
-      <section className="m-24">More to come...</section>
-      {/* <section className="m-24">
-        <h2>Work Experience</h2>
-        <Experience
-          img="/nbLogo.svg"
-          title="Senior Frontend Engineer"
-          imgTitle="NewsBreak"
-        />
-      </section> */}
     </main>
+  )
+}
+
+function Hero() {
+  return (
+    <div className="flex flex-col md:flex-row gap-2 justify-center items-center relative overflow-hidden">
+      <div className="flex flex-col text-center justify-center z-10 min-h-[80vh]">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-primary">David Chen</h1>
+        <span className="text-xl md:text-2xl text-neutral">Generic Name. Unique Individual.</span>
+      </div>
+      <Image
+        style={{ objectFit: "cover", opacity: "60%" }}
+        src="/hero-1920x1280.jpg"
+        alt="React Background"
+        priority
+        fill="relative"
+      />
+    </div>
   )
 }
