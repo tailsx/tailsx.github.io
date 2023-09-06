@@ -4,8 +4,9 @@
 
 :root {
   --primary: #00205b;
-  --secondary: #004c97;
+  --secondary: #80a0ff;
   --tertiary: #006300;
+  --neutral: #f2f2f2;
 }
 :root .theme-inverse {
   --primary: #004c97;
@@ -22,8 +23,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --primary: #00205b;
-    --secondary: #004c97;
+    --secondary: #80a0ff;
     --tertiary: #006300;
+    --neutral: #f2f2f2;
   }
 }
 

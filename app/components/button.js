@@ -9,14 +9,14 @@ export default function Button(props) {
 
   if (variant) {
     if (variant === "primary") {
-      style += " bg-primary"
+      style += " bg-primary text-neutral"
     }
 
     if (variant === "secondary") {
-      style += " bg-secondary"
+      style += " bg-secondary text-neutral"
     }
     if (variant === "accent") {
-      style += " bg-accent"
+      style += " bg-accent text-neutral"
     }
   }
 

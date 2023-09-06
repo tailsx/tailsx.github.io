@@ -38,11 +38,7 @@ function Hero() {
     <div className="flex flex-col md:flex-row gap-2 justify-center items-center relative overflow-hidden">
       <div className="flex flex-col text-center justify-center z-10 min-h-[80vh]">
         <h1 className="text-4xl md:text-6xl font-extrabold text-primary">David Chen</h1>
-        <span className="text-xl md:text-2xl text-secondary">Generic Name. Unique Individual.</span>
-        <span></span>
-        <div className="mt-12">
-          <button>learn more</button>
-        </div>
+        <span className="text-xl md:text-2xl text-neutral">Generic Name. Unique Individual.</span>
       </div>
       <Image
         style={{ objectFit: "cover", opacity: "60%" }}
