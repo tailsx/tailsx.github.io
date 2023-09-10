@@ -15,8 +15,14 @@
 }
 
 :root .theme-tft {
-  --primary: #0a323c;
+  --primary: #ffb60c;
   --secondary: #f000b8;
+  --tertiary: #37cdbe;
+}
+
+:root .theme-mahjong {
+  --primary: #fff;
+  --secondary: green;
   --tertiary: #37cdbe;
 }
 

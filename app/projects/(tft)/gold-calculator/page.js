@@ -5,7 +5,34 @@ import Gold from "./GoldCard"
 import RoundHud from "./RoundHud"
 import { CalculatorContext, CalculatorProvider } from "./GoldContext"
 
-export default function GoldCaluclator() {
+export default function Stage2Calculator() {
+  return (
+    <div className="theme-tft">
+      <RoundUI />
+    </div>
+  )
+}
+
+function RoundUI() {
+  const handleClick = (e) => {
+    console.log(e.target.value)
+  }
+  return (
+    <div>
+      <div>
+        <button onClick={handleClick} value={1}>2-1</button>
+        <button>2-2</button>
+        <button>2-3</button>
+        <button disabled>2-4</button>
+        <button>2-5</button>
+        <button>2-6</button>
+        <button disabled>2-7</button>
+      </div>
+    </div>
+  )
+}
+
+/* export default function GoldCaluclator() {
   return (
     <CalculatorProvider>
       <Stage2Calculator />
@@ -152,3 +179,4 @@ function RoundCalculate(props) {
     </div>
   )
 }
+ */
