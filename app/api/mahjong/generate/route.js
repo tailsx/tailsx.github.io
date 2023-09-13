@@ -1,7 +1,8 @@
 //import { GoogleAuth } from "google-auth-library"
 import { NextResponse } from "next/server"
-import { getAuthSheets, googleSheets } from "../utils/google"
-import { get, getJSON, set, setJSON } from "../utils/redis"
+import { getAuthSheets, googleSheets } from "../../utils/google"
+import { get, getJSON, set, setJSON } from "../../utils/redis"
+import { isKeyStale } from "../../utils/server"
 
 const DELAY_UNIX_MS = 1000 * 60 * 60 * 24 * 7 // 7 days
 
@@ -12,7 +13,7 @@ export async function GET(req) {
 
   try {
     const resCheck = await getJSON("mahjong")
-    if (resCheck.lastUpdated && resCheck.lastUpdated + DELAY_UNIX_MS < Date.now()) {
+    if (resCheck.lastUpdated && !isKeyStale(resCheck.lastUpdated)) {
       return NextResponse.json(resCheck)
     }
 
@@ -33,17 +34,6 @@ export async function GET(req) {
       return NextResponse.json(json)
     }
     throw new Error("Error for redis")
-
-    /*    
-// redis
-const data = await setJSON("mahjong", { test: "test" })
-    console.log(data)
-    if (data === "OK") {
-      return NextResponse.json(data)
-    }
-    throw new Error("No data found") 
-    
-    */
   } catch (error) {
     return NextResponse.json({ error: error.message })
   }

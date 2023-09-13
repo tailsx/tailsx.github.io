@@ -29,11 +29,11 @@ export async function get(key) {
   return data
 }
 
-export async function hGetAll(key) {
+export async function hGet(key, field) {
   if (!client.connected) {
     await client.connect()
   }
-  const data = await client.hGetAll(key)
+  const data = await client.hGet(key, field)
   await client.disconnect()
   return data
 }
@@ -47,11 +47,11 @@ export async function set(key, value) {
   return data
 }
 
-export async function hSetAll(key, value) {
+export async function hSet(key, field, value) {
   if (!client.connected) {
     await client.connect()
   }
-  const data = await client.hSetAll(key, value)
+  const data = await client.hSet(key, field, value)
   await client.disconnect()
   return data
 }
