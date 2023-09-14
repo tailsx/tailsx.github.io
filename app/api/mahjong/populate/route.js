@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+/* import { NextResponse } from "next/server"
 import { importGameData, importGamesList, processGameData, processGameList } from "../../utils/mahjong"
 import { hSet, setJSON } from "../../utils/redis"
 
@@ -20,3 +20,4 @@ export async function GET(req) {
 
   return NextResponse.json("OK")
 }
+ */
