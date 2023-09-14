@@ -1,16 +1,13 @@
 import { NextResponse } from "next/server"
 import { getAuthSheets, googleSheets } from "@/app/api/utils/google"
-import { organizeData } from "@/app/api/utils/mahjong"
-import { hGet, hSet } from "@/app/api/utils/redis"
 
 export async function GET(req, params) {
   try {
-    const resDB = await hGet("mahjongGameData", "7-2-21")
-    const gameData = JSON.parse(resDB)
+    const gameData = fetchGameData(params?.params?.game)
     if (resDB) {
       return NextResponse.json(gameData)
     }
-    throw new Error("Error for redis")
+    throw new Error("No data found")
   } catch (error) {
     return NextResponse.json({ error: error.message })
   }

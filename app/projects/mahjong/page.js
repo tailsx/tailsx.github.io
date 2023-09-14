@@ -8,18 +8,16 @@ import UserProfile from "./components/userProfile"
 
 export default function Mahjong() {
   return (
-    <div className="theme-mahjong bg-primary min-w-screen min-h-screen p-2">
-      <main className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4">
-        <div className="flex flex-col">
-          {/*      <UserProfile /> */}
-          <LastMatch />
-          <Leaderboard />
-        </div>
-        <div className="flex flex-grow">
-          <Graph />
-        </div>
-      </main>
-    </div>
+    <main className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col">
+        {/*      <UserProfile /> */}
+        <LastMatch />
+        <Leaderboard />
+      </div>
+      <div className="flex flex-grow">
+        <Graph />
+      </div>
+    </main>
   )
 }
 

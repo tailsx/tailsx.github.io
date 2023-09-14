@@ -1,3 +1,12 @@
+import { hGet, hSet } from "@/app/api/utils/redis"
+
+export async function fetchGameData(gameId) {
+  const resDB = await hGet("mahjongGameData", gameId)
+  const gameData = JSON.parse(resDB)
+
+  return gameData
+}
+
 export function gameSanityCheck(gameRows) {
   for (let i = 0; i < gameRows.length; i++) {
     if (gameRows[i].length < 4) {

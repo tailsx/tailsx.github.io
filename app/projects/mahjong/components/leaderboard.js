@@ -1,5 +1,7 @@
+import Table from "@/app/components/shared/table"
+
 export default function Leaderboard() {
-  return (
+  /*   return (
     <div className="">
       <h3 className="font-bold">Leaderboard</h3>
       <table className="table-auto border border-collapse max-w-[600px] mx-auto">
@@ -16,6 +18,17 @@ export default function Leaderboard() {
         </tbody>
       </table>
     </div>
+  ) */
+  return (
+    <Table
+      title="Leaderboard"
+      headers={["Name", "Total"]}
+      data={[
+        [1, 2],
+        [2, 2324324233],
+        [3, 4],
+      ]}
+    />
   )
 }
 
@@ -24,7 +37,11 @@ Leaderboard.TableRow = function TableRow(props) {
   return (
     <tr className="border">
       {data.map((value, i) => {
-        return <td key={i} className="py-2 px-4 text-right">{value}</td>
+        return (
+          <td key={i} className="py-2 px-4 text-right">
+            {value}
+          </td>
+        )
       })}
     </tr>
   )
