@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { getAuthSheets, googleSheets } from "@/app/api/utils/google"
-import { importGameData, processGameData } from "@/app/api/utils/mahjong"
+import { fetchGameData, importGameData, processGameData } from "@/app/api/utils/mahjong"
 import { hSet } from "@/app/api/utils/redis"
 
 export async function GET(req, params) {
