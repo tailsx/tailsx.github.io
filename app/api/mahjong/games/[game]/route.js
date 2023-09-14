@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { getAuthSheets, googleSheets } from "@/app/api/utils/google"
+import { importGameData } from "@/app/api/utils/mahjong"
 
 export async function GET(req, params) {
   try {
@@ -18,11 +19,7 @@ export async function POST(req, params) {
   const sheets = googleSheets(auth)
 
   if (params?.params?.game) {
-    const sheetName = params.params.game.replace(/-/g, "/")
-    const data = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: `${sheetName}!A:E`,
-    })
+    const data = await importGameData(params.params.game)
     const resSet = await hSet(
       "mahjongGameData",
       params?.params?.game,
@@ -35,6 +32,7 @@ export async function POST(req, params) {
             return parseInt(score)
           })
         ),
+        isVerified: false,
       })
     )
     return NextResponse.json(resSet)
