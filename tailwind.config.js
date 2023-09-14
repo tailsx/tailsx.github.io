@@ -19,6 +19,17 @@ module.exports = {
         secondary: "var(--secondary)",
         accent: "var(--tertiary)",
       },
+      keyframes: {
+        uniqueTitle: {
+          "0%": { backgroundColor: "#5AE1E6" }, // Cyan
+          "33%": { backgroundColor: "#4287F5" }, // Bright Blue
+          "66%": { backgroundColor: "#8B80F9" }, // Lavender
+          "100%": { backgroundColor: "#5AE1E6" }, // Cyan again to complete loop
+        },
+      },
+      animation: {
+        uniqueTitle: "uniqueTitle 10s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

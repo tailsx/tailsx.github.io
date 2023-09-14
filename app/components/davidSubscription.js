@@ -22,7 +22,7 @@ const FEATURES_PAID = [
 
 export default function DavidSubscription() {
   return (
-    <div className="flex flex-col w-full bg-primary py-8 px-4 max-w-6xl">
+    <div className="flex flex-col w-full bg-primary py-8 px-4 max-w-6xl mx-auto">
       <h3 className="text-3xl font-bold text-center mb-4 text-secondary">Choose your plan</h3>
       <div className="flex flex-col md:flex-row gap-2">
         <Card title="Free Tier" cta="Try for Free">
