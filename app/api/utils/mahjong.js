@@ -42,6 +42,11 @@ export function gameSanityCheck(gameRows) {
   return true
 }
 
+/**
+ *
+ * @param {*} rawData - Raw data from Google Sheets API
+ * @returns
+ */
 export async function processGameList(rawData) {
   const allSheets = rawData?.data?.sheets
 
@@ -57,5 +62,23 @@ export async function processGameList(rawData) {
     length: allSheets.length,
     titles,
     lastUpdated: Date.now(),
+  }
+}
+
+/**
+ *
+ * @param {*} rawGameData - Raw data from Individual Game of Google Sheet
+ */
+export async function processGameData(rawGameData) {
+  return {
+    players: rawGameData.data.values[0],
+    expectedTotals: rawGameData.data.values[1].map((score) => parseInt(score)),
+    rounds: rawGameData.data.values.slice(2).map((round) =>
+      round.map((score) => {
+        if (score === "") return 0
+        return parseInt(score)
+      })
+    ),
+    isVerified: false,
   }
 }

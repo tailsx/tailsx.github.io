@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { getAuthSheets, googleSheets } from "@/app/api/utils/google"
-import { importGameData } from "@/app/api/utils/mahjong"
+import { importGameData, processGameData } from "@/app/api/utils/mahjong"
+import { hSet } from "@/app/api/utils/redis"
 
 export async function GET(req, params) {
   try {
@@ -15,26 +16,10 @@ export async function GET(req, params) {
 }
 
 export async function POST(req, params) {
-  const auth = await getAuthSheets()
-  const sheets = googleSheets(auth)
-
   if (params?.params?.game) {
-    const data = await importGameData(params.params.game)
-    const resSet = await hSet(
-      "mahjongGameData",
-      params?.params?.game,
-      JSON.stringify({
-        players: data.data.values[0],
-        expectedTotals: data.data.values[1].map((score) => parseInt(score)),
-        rounds: data.data.values.slice(2).map((round) =>
-          round.map((score) => {
-            if (score === "") return 0
-            return parseInt(score)
-          })
-        ),
-        isVerified: false,
-      })
-    )
+    const data = await importGameData(decodeURI(params?.params?.game))
+    const resSet = await hSet("mahjongGameData", params?.params?.game, JSON.stringify(await processGameData(data)))
+
     return NextResponse.json(resSet)
   }
 
