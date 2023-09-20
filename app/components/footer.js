@@ -17,7 +17,6 @@ export default function Footer() {
         </div>
         <div className="text-sm">
           <p>&copy; {new Date().getFullYear()} David Chen. All rights reserved.</p>
-          <p>Powered by AI</p>
         </div>
       </div>
     </footer>

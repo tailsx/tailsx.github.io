@@ -9,7 +9,6 @@ import Image from "next/image"
 import DavidCards from "./components/davidCards"
 import DavidFeatures from "./components/davidFeatures"
 import { Playfair_Display } from "next/font/google"
-import { Button } from "@/components/ui/button"
 
 const font = Playfair_Display({ subsets: ["latin"], style: ["normal"], weight: ["700"] })
 
@@ -17,7 +16,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <div className="relative flex flex-col">
-        <section className="bg-white/30">
+        <section>
           <Hero />
         </section>
         <section className="bg-secondary px-2 py-4">
@@ -44,11 +43,14 @@ function Hero() {
           Ordinary Name. Extraordinary Value.
         </span>
         <span className="text-base md:text-lg lg:text-2xl text-white font-semibold mt-2">
-          Meet <span className="text-accent">David</span>, your next High-Impact Developer.
+          Meet <span className="text-secondary">David</span>, your next High-Impact Developer.
         </span>
-        <Button variant="secondary" size="lg" className="mt-8 rounded-full lg:text-lg lg:h-14 lg:px-14">
+        <a
+          href="mailto:chendavid383@gmail.com"
+          className="inline-flex items-center justify-center px-6 py-3 mt-8 text-lg text-white bg-secondary rounded-full hover:bg-accent transition duration-300 ease-in-out lg:h-14 lg:px-14 lg:text-lg"
+        >
           Talk Now!
-        </Button>
+        </a>
       </div>
       <Image
         src="/hero-1920x1280.jpg"
