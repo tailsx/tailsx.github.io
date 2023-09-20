@@ -1,4 +1,4 @@
-import Button from "./button"
+import { Button } from "@/components/ui/button"
 
 const FEATURES_FREE = [
   { title: "UI Showcase", description: "Explore the front-end designs that power the toolset." },
@@ -56,7 +56,7 @@ function Card(props) {
       <span className="text-2xl font-black">{title}</span>
       <div className="flex-grow">{children}</div>
       <div className="py-2">
-        <Button variant="primary">{cta}</Button>
+        <Button variant="secondary">{cta}</Button>
       </div>
     </div>
   )
