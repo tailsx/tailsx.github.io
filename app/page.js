@@ -20,7 +20,7 @@ export default function Home() {
         <section className="bg-white/30">
           <Hero />
         </section>
-        <section className="bg-primary px-2 py-4">
+        <section className="bg-secondary px-2 py-4">
           <DavidFeatures />
         </section>
         <section className="bg-primary theme-inverse">
