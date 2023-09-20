@@ -23,11 +23,11 @@ export default function Home() {
         <section className="bg-secondary px-2 py-4">
           <DavidFeatures />
         </section>
-        <section className="bg-primary theme-inverse">
+        <section className="bg-primary">
           <DavidCards />
         </section>
 
-        <section className="bg-primary">
+        <section className="bg-secondary">
           <DavidSubscription />
         </section>
 
