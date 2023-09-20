@@ -16,7 +16,7 @@ const FEATURES_ENTERPRISE = [
 export default function DavidSubscription() {
   return (
     <div className="flex flex-col w-full bg-secondary py-8 px-4 max-w-6xl mx-auto">
-      <h3 className="text-3xl font-bold text-center mb-4 text-primary">Choose your plan</h3>
+      <h3 className="text-3xl font-bold text-center mb-4 lg:mb-8 text-primary">Choose your plan</h3>
       <div className="flex flex-col md:flex-row gap-2">
         <Card title="Free Tier" cta="Try for Free">
           <ListFeatures list={FEATURES_FREE} />
@@ -45,7 +45,7 @@ function ListFeatures(props) {
 function Card(props) {
   const { title, children, cta } = props;
   return (
-    <div className="flex flex-col bg-primary text-secondary w-full rounded-lg px-4 py-4 lg:px-6">
+    <div className="flex flex-col bg-primary text-accent w-full rounded-lg px-4 py-4 lg:px-6">
       <span className="text-2xl font-black">{title}</span>
       <div className="flex-grow mt-2 mb-4">{children}</div>
       <div className="py-2">

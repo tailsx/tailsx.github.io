@@ -44,10 +44,10 @@ function Hero() {
           Ordinary Name. Extraordinary Value.
         </span>
         <span className="text-base md:text-lg lg:text-2xl text-white font-semibold mt-2">
-          Meet <span className="text-accent">David</span>, your next essential developer.
+          Meet <span className="text-accent">David</span>, your next High-Impact Developer.
         </span>
-        <Button variant="secondary" size="lg" className="mt-8 rounded-full">
-          Talk to David
+        <Button variant="secondary" size="lg" className="mt-8 rounded-full lg:text-lg lg:h-14 lg:px-14">
+          Talk Now!
         </Button>
       </div>
       <Image
