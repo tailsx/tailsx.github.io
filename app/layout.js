@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${font.className} bg-primary`}>{children}</body>
+      <body className={`theme-leafs`}>{children}</body>
     </html>
   )
 }
