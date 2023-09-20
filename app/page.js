@@ -49,7 +49,7 @@ function Hero() {
           href="mailto:chendavid383@gmail.com"
           className="inline-flex items-center justify-center px-6 py-3 mt-8 text-lg text-white bg-secondary rounded-full hover:bg-accent transition duration-300 ease-in-out lg:h-14 lg:px-14 lg:text-lg"
         >
-          Talk Now!
+          Connect Now!
         </a>
       </div>
       <Image
