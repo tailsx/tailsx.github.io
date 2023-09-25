@@ -1,12 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
-	],
+  content: ["./pages/**/*.{js,jsx}", "./components/**/*.{js,jsx}", "./app/**/*.{js,jsx}", "./src/**/*.{js,jsx}"],
   theme: {
     container: {
       center: true,
@@ -65,10 +60,43 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "wiggle-and-bounce": {
+          "0%, 25%": { transform: "translateY(0) rotate(0deg)" },
+          "26%": { transform: "translateY(0) rotate(-3deg)" },
+          "30%": { transform: "translateY(0) rotate(3deg)" },
+          "34%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-10px) rotate(0deg)" },
+          "66%, 100%": { transform: "translateY(0) rotate(0deg)" },
+        },
+        "ping-single": {
+          "0%, 65%": {
+            transform: "scale(1)",
+            opacity: "0",
+          },
+          "66%": {
+            transform: "scale(1)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "scale(1.5)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        wiggle: "wiggle 1s ease-in-out infinite",
+        "wiggle-and-bounce": "wiggle-and-bounce 3s ease-in-out infinite",
+        "ping-single": "ping-single 3s cubic-bezier(0, 0, 0.2, 1) infinite forwards",
+      },
+      animationDelay: {
+        "-3": "-3s",
+        "-2": "-2s",
+        "-1": "-1s",
+        0: "0s",
+        1: "1s",
+        2: "2s",
       },
     },
   },

@@ -9,6 +9,7 @@ import Image from "next/image"
 import DavidCards from "./components/davidCards"
 import DavidFeatures from "./components/davidFeatures"
 import { Playfair_Display } from "next/font/google"
+import TransparentHero from "@/app/components/TransparentHero"
 
 const font = Playfair_Display({ subsets: ["latin"], style: ["normal"], weight: ["700"] })
 
@@ -17,7 +18,7 @@ export default function Home() {
     <main className="min-h-screen">
       <div className="relative flex flex-col">
         <section>
-          <Hero />
+          <TransparentHero />
         </section>
         <section className="bg-secondary px-2 py-4">
           <DavidFeatures />
