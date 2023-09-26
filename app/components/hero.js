@@ -5,17 +5,17 @@ import { TechStack } from "./techStack"
 
 export default function Hero() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen text-xl">
+    <div className="flex flex-col justify-center items-center min-h-screen text-xl mt-12 md:mt-0 p-4">
       <div className="flex flex-col">
-        <div className="flex justify-center items-center gap-20">
+        <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 md:gap-20 my-6">
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:leading-none">
               Ordinary Name,
               <br /> Extraordinary Value
             </h1>
-            <p className="text-2xl text-neutral">{`Hi I'm David Chen, a Frontend Engineer currently based in Bay Area.`}</p>
+            <p className="text-base md:text-2xl text-neutral">{`Hi I'm David Chen, a Frontend Engineer currently based in Bay Area.`}</p>
           </div>
-          <div className="relative flex justify-center items-center">
+          <div className="relative flex justify-center items-center py-4">
             <div className="absolute z-0">
               <div className="w-60 h-60 bg-white rounded-full animate-ping-single"></div>
             </div>
@@ -25,7 +25,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <p className="font-bold">Tech Stack:</p>
+          <p className="hidden lg:block font-bold">Tech Stack:</p>
           <TechStack />
         </div>
       </div>
