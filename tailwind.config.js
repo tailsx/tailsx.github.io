@@ -87,8 +87,8 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         wiggle: "wiggle 1s ease-in-out infinite",
-        "wiggle-and-bounce": "wiggle-and-bounce 3s ease-in-out infinite",
-        "ping-single": "ping-single 3s cubic-bezier(0, 0, 0.2, 1) infinite forwards",
+        "wiggle-and-bounce": "wiggle-and-bounce 5s ease-in-out infinite",
+        "ping-single": "ping-single 5s cubic-bezier(0, 0, 0.2, 1) infinite forwards",
       },
       animationDelay: {
         "-3": "-3s",

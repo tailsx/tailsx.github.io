@@ -1,7 +1,8 @@
+import { cn } from "@/lib/utils"
 import Image from "next/image"
 
 export default function ProfilePic(props) {
-  const { src, alt } = props
+  const { src, alt, size } = props
   if (src === null) {
     return (
       <div className="relative w-40 h-40 overflow-hidden rounded-full">
@@ -16,7 +17,7 @@ export default function ProfilePic(props) {
   }
 
   return (
-    <div className="relative w-40 h-40 overflow-hidden rounded-full">
+    <div className={cn(`relative w-40 h-40 overflow-hidden rounded-full`, size === "lg" && "w-60 h-60")}>
       <picture>
         <Image
           priority
