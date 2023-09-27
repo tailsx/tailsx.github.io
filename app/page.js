@@ -10,8 +10,9 @@ import DavidCards from "./components/davidCards"
 import DavidFeatures from "./components/davidFeatures"
 import { Playfair_Display } from "next/font/google"
 import Hero from "@/app/components/hero"
+import { Projects } from "@/app/components/davidProjects"
 
-const font = Playfair_Display({ subsets: ["latin"], style: ["normal"], weight: ["700"] })
+const font = Playfair_Display({ subsets: ["latin"], style: ["normal"], weight: ["400", "700"] })
 
 export default function Home() {
   return (
@@ -19,16 +20,19 @@ export default function Home() {
       <section>
         <Hero />
       </section>
-      <section className="bg-secondary px-2 py-4">
-        <DavidFeatures />
+      <section>
+        <Projects />
       </section>
-      <section className="bg-primary">
+      {/*       <section className="bg-secondary px-2 py-4">
+        <DavidFeatures />
+      </section> */}
+      {/*    <section className="">
         <DavidCards />
       </section>
 
-      <section className="bg-secondary">
+      <section className="">
         <DavidSubscription />
-      </section>
+      </section> */}
 
       <Footer />
     </main>

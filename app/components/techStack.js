@@ -15,7 +15,7 @@ const TechStack = () => {
 
 const TechItem = (props) => {
   return (
-    <div className="flex justify-center items-center bg-primary rounded-full border-secondary border box-border p-2 w-20 h-20">
+    <div className="flex justify-center items-center bg-primary rounded-full drop-shadow-md border-primary border box-border p-2 w-20 h-20">
       <Image src={props.src} alt={props.alt} width={props.width} height={props.height} />
     </div>
   )

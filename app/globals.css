@@ -36,33 +36,33 @@
   }
 
   .theme-leafs {
-    --background: 210 100% 18%;
-    --foreground: 210 40% 98%;
+    --background: 0, 0%, 100%;
+    --foreground: 243, 76%, 5%;
 
-    --card: 210 100% 18%;
-    --card-foreground: 210 40% 98%;
+    --card: 0, 0%, 76%;
+    --card-foreground: 243, 76%, 5%;
 
     --popover: 210 100% 18%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 100% 18%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 219, 100%, 18%;
+    --primary-foreground: 0, 0%, 76%;
 
-    --secondary: 210 58% 65%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0, 0%, 76%;
+    --secondary-foreground: 219, 100%, 18%;
 
-    --muted: 210 100% 18%;
-    --muted-foreground: 210 40% 98%;
+    --muted: 0, 0%, 76%;
+    --muted-foreground: 243, 76%, 5%;
 
-    --accent: 0 0% 90%;
-    --accent-foreground: 210 100% 18%;
+    --accent: 203, 77%, 61%;
+    --accent-foreground: 243, 76%, 5%;
 
     --destructive: 210 100% 18%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 100% 18%;
-    --input: 210 100% 18%;
-    --ring: 210 100% 18%;
+    --border: 219, 100%, 18%;
+    --input: 219, 100%, 18%;
+    --ring: 219, 100%, 18%;
   }
 
   .dark {

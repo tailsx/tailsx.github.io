@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Headshot from "./headshot"
 
 export default function David() {
