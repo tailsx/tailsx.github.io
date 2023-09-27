@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import Image from "next/image"
 
 const PROJECTS = [
@@ -11,38 +13,63 @@ const PROJECTS = [
     subtitle: "Hyperlocal News App",
     desc: "NewsBreak is a hyperlocal news app that allows users to view news articles based on their location.",
   },
+  {
+    title: "Family Mahjong",
+    subtitle: "Mahjong App",
+    desc: "Web App showing games of Mahjong played by Family.  Individual Game and Lifetime stats available.",
+  },
 ]
 
 const DavidProjects = () => {
   return (
-    <div className="px-2 py-4 max-w-6xl mx-auto flex flex-col gap-4">
-      {PROJECTS.map(({ title, subtitle, desc }) => (
-        <ProjectItem key={title}>
-          <ProjectImage />
-          <ProjectBody>
-            <ProjectTitle>{title}</ProjectTitle>
-            <ProjectSubtitle>{subtitle}</ProjectSubtitle>
-            <ProjectDescription>{desc}</ProjectDescription>
-          </ProjectBody>
-        </ProjectItem>
-      ))}
+    <div className="px-2 pt-8 pb-12 max-w-6xl mx-auto flex flex-col items-center gap-2">
+      <h2 className="text-primary text-2xl md:text-4xl font-bold">Projects</h2>
+      <p className="text-foreground text-base md:text-2xl mb-4 leading-tight">{`Check out some projects I've had my hand in`}</p>
+      <div className="flex flex-col gap-6">
+        {PROJECTS.map(({ title, subtitle, desc }, index) => (
+          <ProjectItem key={title} direction={index % 2 === 0 ? "ltr" : "rtl"}>
+            <ProjectHeader>
+              <ProjectImage />
+            </ProjectHeader>
+            <ProjectBody>
+              <ProjectTitle>{title}</ProjectTitle>
+              <ProjectSubtitle>{subtitle}</ProjectSubtitle>
+              <ProjectDescription>{desc}</ProjectDescription>
+              <ProjectActions>
+                <ProjectButton className="text-white">View</ProjectButton>
+              </ProjectActions>
+            </ProjectBody>
+          </ProjectItem>
+        ))}
+      </div>
     </div>
   )
 }
 
 const ProjectItem = (props) => {
-  const { children } = props
-  return <div className="flex flex-col md:flex-row-reverse rounded-lg bg-card overflow-hidden">{props.children}</div>
+  const { children, direction = "ltr" } = props
+  return (
+    <div
+      className={cn(
+        `flex flex-col rounded-lg bg-card overflow-hidden lg:flex-row text-foreground`,
+        direction === "rtl" && "lg:flex-row-reverse"
+      )}
+    >
+      {props.children}
+    </div>
+  )
 }
-
 const ProjectImage = (props) => (
-  <div className="relative h-40 lg:w-72">
+  <div className="relative h-40 w-full lg:h-48 lg:w-72">
     <Image src="/hero-1920x1280.jpg" alt="" fill style={{ objectFit: "cover" }} />
   </div>
 )
-const ProjectBody = (props) => <div className="flex flex-col p-4">{props.children}</div>
-const ProjectTitle = (props) => <h3 className="text-xl font-bold">{props.children}</h3>
+const ProjectHeader = (props) => <div className={`flex justify-center items-center`}>{props.children}</div>
+const ProjectBody = (props) => <div className={`flex flex-col p-4 flex-grow`}>{props.children}</div>
+const ProjectTitle = (props) => <h3 className="text-xl text-primary font-bold">{props.children}</h3>
 const ProjectSubtitle = (props) => <span className="text-sm">{props.children}</span>
-const ProjectDescription = (props) => <p className="text-sm">{props.children}</p>
+const ProjectDescription = (props) => <p className="text-sm mt-2 mb-4">{props.children}</p>
+const ProjectActions = (props) => <div className="flex mt-auto">{props.children}</div>
+const ProjectButton = Button
 
 export { DavidProjects as Projects, ProjectItem }
