@@ -17,10 +17,10 @@ const PROJECTS = [
     link: "https://www.newsbreak.com",
   },
   {
-    title: "Project Showcase",
-    subtitle: "Web app to practice",
-    desc: "Web app to practice Next.js, Tailwind CSS, and Vercel. It is a static site that is deployed on Vercel.",
-    link: "https://project-showcase-sigma.vercel.app/",
+    title: "TFT Companion Tool",
+    subtitle: "5 streak into Krugs",
+    desc: "App to help improve TFT gameplay. It is a work in progress.",
+    link: "https://project-showcase-sigma.vercel.app/tft",
   },
 ]
 

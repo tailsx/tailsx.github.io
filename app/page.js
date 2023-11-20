@@ -23,6 +23,11 @@ export default function Home() {
       <section>
         <Projects />
       </section>
+      <section>
+        <div>
+          
+        </div>
+      </section>
       {/*       <section className="bg-secondary px-2 py-4">
         <DavidFeatures />
       </section> */}
