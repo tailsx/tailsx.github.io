@@ -19,7 +19,7 @@ const PROJECTS = [
   {
     title: "TFT Companion Tool",
     subtitle: "5 streak into Krugs",
-    desc: "App to help improve TFT gameplay. It is a work in progress.",
+    desc: "App to help improve TFT gameplay. It is a work in progress. Expected Q1 2024.",
     link: "https://project-showcase-sigma.vercel.app/tft",
   },
 ]
