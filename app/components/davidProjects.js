@@ -20,7 +20,19 @@ const PROJECTS = [
     title: "TFT Companion Tool",
     subtitle: "5 streak into Krugs",
     desc: "App to help improve TFT gameplay. It is a work in progress. Expected Q1 2024.",
-    link: "https://project-showcase-sigma.vercel.app/tft",
+    link: "https://5streak.com",
+  },
+  {
+    title: "Digidle",
+    subtitle: "Digimon variant of the popular Wordle game",
+    desc: "Guess until you get the Digimon of the day!",
+    link: "https://showcase-psi-coral.vercel.app/projects/digidle",
+  },
+  {
+    title: "Pokemon Dashboard",
+    subtitle: "5 streak into Krugs",
+    desc: "Playing around with Pokemon API",
+    link: "https://showcase-psi-coral.vercel.app/projects/pokemon",
   },
 ]
 
