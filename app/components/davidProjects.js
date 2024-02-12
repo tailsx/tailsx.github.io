@@ -30,7 +30,7 @@ const PROJECTS = [
   },
   {
     title: "Pokemon Dashboard",
-    subtitle: "5 streak into Krugs",
+    subtitle: "Gotta catch 'em all!",
     desc: "Playing around with Pokemon API",
     link: "https://showcase-psi-coral.vercel.app/projects/pokemon",
   },
