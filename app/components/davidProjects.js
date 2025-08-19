@@ -86,7 +86,7 @@ const ProjectImage = (props) => (
   </div>
 )
 const ProjectHeader = (props) => <div className={`flex justify-center items-center`}>{props.children}</div>
-const ProjectBody = (props) => <div className={`flex flex-col p-4 flex-grow lg:p-6`}>{props.children}</div>
+const ProjectBody = (props) => <div className={`flex flex-col p-4 grow lg:p-6`}>{props.children}</div>
 const ProjectTitle = (props) => <h3 className="text-xl text-primary font-bold">{props.children}</h3>
 const ProjectSubtitle = (props) => <span className="text-sm">{props.children}</span>
 const ProjectDescription = (props) => <p className="text-sm mt-2 mb-4">{props.children}</p>

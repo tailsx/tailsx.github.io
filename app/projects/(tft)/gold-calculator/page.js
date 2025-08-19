@@ -117,11 +117,11 @@ function Input(props) {
 
   return (
     <label className="flex">
-      <span className="w-40 flex-shrink-0">{label}</span>
+      <span className="w-40 shrink-0">{label}</span>
       <input
         className={clsx(
           "bg-white text-black/70",
-          size === "auto" ? "flex-grow" : size === "xs" ? "w-8" : size === "sm" ? "w-12" : ""
+          size === "auto" ? "grow" : size === "xs" ? "w-8" : size === "sm" ? "w-12" : ""
         )}
         name={name}
         type={type || "text"}

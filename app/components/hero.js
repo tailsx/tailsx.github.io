@@ -12,7 +12,7 @@ export default function Hero() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:leading-none">
               Ordinary Name,
               <br />{" "}
-              <span className="bg-gradient-to-r from-accent to-white text-transparent bg-clip-text">
+              <span className="bg-linear-to-r from-accent to-white text-transparent bg-clip-text">
                 Extraordinary
               </span>{" "}
               Value
