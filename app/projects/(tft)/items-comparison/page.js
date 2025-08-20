@@ -1,9 +1,12 @@
 "use client"
 import { useCallback, useState } from "react"
 import { ITEMS } from "./items"
+import { Player, EconRunner } from "@tailsx/tft-tool"
 
 export default function ItemsComponents() {
   const [comp, setComp] = useState([])
+  console.log(new Player(console))
+  console.log(new EconRunner())
   return (
     <div>
       <h1>Items Comparison</h1>
