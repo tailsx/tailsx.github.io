@@ -53,6 +53,9 @@ jobs:
         with:
           node-version: "18"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          registry-url: 'https://npm.pkg.github.com'
+      - name: Authenticate with GitHub npm registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.ACTION_READ_PACKAGES }}" >> ~/.npmrc
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
